@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Добавление игры{% endblock %}
+{% block head %}
+
+{% endblock %}
+{% block login %}
+    <div style=" display:block;" class="container">
+        <h1>Добавление игры</h1>
+        <img class="upload-img" id="image" style="width: 200px;
+	height: 283px;" src="#" alt=""/>
+        <form action="" method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.title.label }}<br>
+                {{ form.title(class="form-control") }}<br>
+                {% for error in form.title.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <script src="{{ url_for("static", filename="js/textarea.js") }}"></script>
+                {{ form.short_description.label }}<br>
+                {{ form.short_description(class="form-control list_header_itemInput_mini") }}<br>
+                {% for error in form.short_description.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.system_requirements.label }}<br>
+                {{ form.system_requirements(class="form-control list_header_itemInput") }}<br>
+                {% for error in form.system_requirements.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.version.label }}<br>
+                {{ form.version(class="form-control") }}<br>
+                {% for error in form.version.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.description.label }}<br>
+                {{ form.description(class="form-control list_header_itemInput") }}<br>
+                {% for error in form.description.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <script src="{{ url_for("static", filename="js/view_upload_image.js") }}"></script>
+                {{ form.image.label }}
+                <input name="image" class="form-control" type="file" accept="image/*"
+                       onchange="readURL(this);">
+                {% for error in form.image.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                <script src="{{ url_for("static", filename="js/view_upload_image.js") }}"></script>
+                {{ form.image_url.label }}
+                <label for="image_url"></label><input id="image_url" name="image_url"
+                                                      class="form-control" type="text"
+                                                      onchange="readURLtext(this);"><br>
+                {% for error in form.image_url.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.need_premium.label }}
+                {{ form.need_premium(class="form-check-input", type="checkbox") }}<br>
+                {% for error in form.need_premium.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.url.label }}<br>
+                {{ form.url(class="form-control", type="file") }}<br>
+                {% for error in form.url.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>
+                {{ form.category.label }}<br>
+                {{ form.category(class="form-control") }}<br>
+                {% for error in form.url.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endfor %}
+            </p>
+            <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+            {% if message %}<div class="alert alert-danger">{{ message }}</div>{% endif %}
+        </form>
+    </div>
+{% endblock %}

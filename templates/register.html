@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/login/css/styles.css" media="screen" type="text/css"/>
+    <link rel="icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="http://vladmaxi.net/favicon.ico" type="image/x-icon">
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->{% endblock %}
+{% block login %}
+     <div style=" display:block;" class="container">
+    <div class="vladmaxi-top">
+        <a href="/" target="_blank">Главная</a>
+        <span class="right">
+        </span>
+        <div class="clr"></div>
+    </div>
+    <!--/ vladmaxi top bar -->
+
+    <div id="login-form">
+        <h1>Регистрация на сайте</h1>
+
+        <fieldset>
+            <form action="" method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.nickname.label }}<br>
+                    {{ form.nickname(type="text") }}<br>
+                    {% for error in form.nickname.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.email.label }}<br>
+                    {{ form.email(type="email") }}<br>
+                    {% for error in form.email.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.password.label }}<br>
+                    {{ form.password(type="password") }}<br>
+                    {% for error in form.password.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.password_again.label }}<br>
+                    {{ form.password_again(type="password") }}<br>
+                    {% for error in form.password_again.errors %}
+                        <p class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </p>
+                    {% endfor %}
+                </p>
+                <p>
+                    {{ form.premium.label }}
+                    {{ form.premium(class="form-check-input", type="checkbox") }}<br>
+                    {% for error in form.premium.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </p>
+                <p>{{ form.submit(type="submit", value="ВОЙТИ") }}</p>
+
+            </form>
+        </fieldset>
+        {% if message %}<p class="alert alert-danger">{{ message }}</p>{% endif %}
+    </div>
+    </div>
+{% endblock %}

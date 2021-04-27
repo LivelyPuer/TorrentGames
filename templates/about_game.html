@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Torrent-games{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+    <table>
+        <tr>
+            <td colspan="2">
+                <H2>{{ game.title }}</H2>
+            </td>
+        </tr>
+        <tr>
+            <td style="vertical-align: 5px;"><img
+                    class="upload-img" style="width: 200px;
+	height: 283px;" src="{{ game.image }}" alt="{{ game.title }}">
+            </td>
+            <td rowspan="2" style="vertical-align: top">
+                <div style="margin-left: 5px">
+                    {{ game.description }}
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <pre>{{ n_to_br(game.system_requirements) }}</pre>
+            </td>
+        </tr>
+    </table>
+    <p></p>
+    <div style="margin-left: 50%; margin-top: 6px;">
+        {% if current_user.is_authenticated %}
+            {% if (current_user.is_premium and game.need_premium) or not game.need_premium %}
+                <a class="btn btn-outline-success"
+                   href="{{ game.url }}" download>Скачать {{ game.url.split('\\')[-1] }}</a>
+            {% else %}
+                <a class="btn btn-outline-danger">Нельзя скачать {{ game.url.split('\\')[-1] }}</a>
+                <h3 style="color: #ffa10f">Нужен Премиум-аккаунт</h3>
+            {% endif %}
+        {% else %}
+            <div class="alert alert-danger" role="alert"><h1>Скачивание игр доступно только для
+                авторизованных пользователей!</h1>
+            </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

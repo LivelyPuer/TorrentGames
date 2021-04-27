@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block title %}Torrent-games{% endblock %}
+{% block head %}{% endblock %}
+{% block login %}
+    <div style=" display:block;" class="container">
+        <table>
+            <tr>
+                <td>
+                    <div class="left_block">
+                        <table>
+                            <tr>{% if current_user.is_premium %}
+                                <td><img
+                                        style="width: 40px; height: 40px; margin-left: 30px; margin-bottom: -10px;"
+                                        src="{{ url_for("static", filename="img/premium.png") }}"
+                                        alt="premium">
+                                </td>
+                            {% endif %}
+                            </tr>
+                            <tr>
+                                <td><img
+                                        class="avatar  {% if current_user.is_premium %} premium {% else %} simple {% endif %}"
+                                        id="image" width=100px height="100px" src="{{ user.avatar }}"
+                                        alt="avatar">
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>{% if current_user.is_premium %}
+                                    <h2 style="color: orange">{{ user.nickname }}</h2>{% else %}
+                                    <h2>{{ user.nickname }}</h2>{% endif %}</td>
+                                <td></td>
+
+                            </tr>
+                            <tr>
+                                <td><br>
+                                    <a class="btn btn-warning" style="margin-left: auto"
+                                       href="/logout">Выйти</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+                <td style="width:100%">
+                    <div class="right_block border-end-0 border-info">
+                        <form action="" method="post" enctype="multipart/form-data">
+
+                            {{ form.hidden_tag() }}
+                            <p>
+                                {{ form.nickname(placeholder="Ник") }}
+                                {% for error in form.nickname.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </p>
+                            <p>
+                                <script src="{{ url_for("static", filename="js/view_upload_image.js") }}"></script>
+                                <input name="avatar" type="file" accept="image/*"
+                                       onchange="readURL(this);">
+                                {% for error in form.avatar.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </p>
+                            <p>
+                                <script src="{{ url_for("static", filename="js/view_upload_image.js") }}"></script>
+                                <label for="image_url"></label><input id="image_url"
+                                                                      name="avatar_url"
+                                                                      type="text"
+                                                                      placeholder="Url аватарки"
+                                                                      onchange="readURLtext(this);"><br>
+                                {% for error in form.avatar_url.errors %}
+                                    <div class="alert alert-danger" role="alert">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </p>
+                            <p>{{ form.submit(type="submit", class="btn btn-success btn-sm") }}</p>
+                            {% if message %}
+                                <div class="alert alert-danger">{{ message }}</div>{% endif %}
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        {% if user.is_premium %}
+            <h3 style="color: #ffa10f">Премиум-аккаунт</h3>
+        {% else %}
+            <h3 style="color: #ee1441">Премиум-аккаунт не активирован</h3>
+        {% endif %}
+        <h2>Мои опубликованные игры<a class="btn btn-primary" style="margin-left: 90%"
+                                      href="/addgame">Добавить
+            игру</a></h2>
+        {% if games %}
+            <table class="table table-striped">
+                {% for game in games %}
+                    <tr>
+                        <td><a href="{{ url_for("about_game", game_id=game.id) }}"><img style="width: 200px;
+	height: 283px;"
+                                                                                        src="{{ game.image }}"
+                                                                                        alt="{{ game.title }}"></a>
+                        </td>
+                        <td><a href="{{ url_for("about_game", game_id=game.id) }}">
+                            <p>{{ game.title }}</p></a></td>
+                        <td>{{ game.short_description }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>Игр нет</h1>
+        {% endif %}
+    </div>
+{% endblock %}

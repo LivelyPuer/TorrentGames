@@ -1,0 +1,86 @@
+.about, .portfolio, .contact, .contact-me, .servise {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+.contact-me-description li , .about-description li {
+    color: #9199a6;
+    font-weight: 500;
+    padding: 8px;
+}
+
+.contact-me-description span, .about-description span {
+    text-transform: uppercase;
+    color: #fff;
+}
+
+#about, #portfolio, #contact {
+    border-bottom: 1px solid rgba(255,255,255,.25);
+}
+
+.section-title {
+    display: flex;
+    flex-direction: column;
+}
+
+/*
+    Landing Page
+*/
+
+.background {
+    display: flex;
+    background-image: url('../img/da.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+
+/*
+    About Me
+*/
+
+.about img {
+    max-width: 70%;
+    border: 5px solid rgb(0 0 0 / 0.1);
+}
+
+.about-info h1 {
+    font-size: 32px;
+    font-weight: 500;
+    margin: 0px 0px 60px;
+}
+
+.about-info h1 span {
+    border-bottom: 1px solid #fff;
+    padding-bottom: 10px;
+}
+
+.about-info p {
+    color: #a9b1b5;
+}
+
+.about-info {
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+}
+
+.about-info .about-description {
+    columns: 2;
+    padding: 20px 15px;
+}
+.terraria .Age-of-Civization .Chrono-box .nekopara1 .nekopara2 .nekopara3{
+    border: 1px solid #ff5bad;
+}
+.Chrono-box h2 {
+    color: red;
+}
+/*
+    policy.html
+*/
+
